@@ -16,7 +16,7 @@ public class App {
 
       before((request, response) -> {
         if(!Base.hasConnection()){
-          Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost:3306/football", "root", "root");
+          Base.open();
         }
 
       });

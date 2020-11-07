@@ -3,8 +3,7 @@ package com.football.api.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.football.api.model.CompetitionsTeams;
-import com.football.api.model.TeamsPlayers;
+import com.football.api.model.*;
 import com.google.gson.JsonObject;
 
 import spark.Request;
@@ -17,7 +16,7 @@ public class PlayerService {
         String league = request.params(":leagueCode");
         String total = "";
         JsonObject msg = new JsonObject();
-
+        
         if(!checkInDatabase(league)){
             response.status(404);
             msg.addProperty("message","Not Found");
@@ -25,7 +24,6 @@ public class PlayerService {
         }
 
         total = String.valueOf(totalplayers(league));
-        // JsonObject msgSuccess = new JsonObject();
         response.status(200);
         msg.addProperty("message",total);
         return msg;

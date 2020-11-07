@@ -3,9 +3,7 @@ package com.football.api.exception;
 import com.google.gson.JsonObject;
 
 public class NotFoundException extends Exception {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
     private final int status;
 
@@ -30,10 +28,3 @@ public class NotFoundException extends Exception {
         return json.toString();
     }
 }
-
-// public class StudentNotFoundException extends Exception {
- 
-//     public StudentNotFoundException(String message) {
-//         super(message);
-//     }
-// }

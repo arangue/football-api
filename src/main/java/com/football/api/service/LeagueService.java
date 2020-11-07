@@ -117,7 +117,6 @@ public class LeagueService {
 
     public static void insertPlayer(List<Integer> idList)
             throws IOException, InterruptedException, NotFoundException, SQLException {
-        // System.out.println("Size de lista: "+idList);
         for(int idTeam : idList) {
 
             JsonObject squad = APIClientService.getTeamsPlayersFromAPI(idTeam);
@@ -173,9 +172,4 @@ public class LeagueService {
         return date;
     }
     
-    //metod
-
-    //metodos que tocan DB, insercion league, teams
-
-
 }

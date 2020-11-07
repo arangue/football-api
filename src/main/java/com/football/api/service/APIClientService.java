@@ -25,25 +25,10 @@ public class APIClientService {
         
         if(response.statusCode() == 404) 
             throw new NotFoundException(404, "Not found",null);
-        
-        // System.out.println("Status "+response.statusCode());
-        
-        //ver status del response. Si es 404 tirar excepttion y capturar en otro service para generar msg
-        
-        
-        JsonObject convertedObject = new Gson().fromJson(response.body(), JsonObject.class);
-        // System.out.println("Competition traida de API "+convertedObject.toString());
-        
+
+        JsonObject convertedObject = new Gson().fromJson(response.body(), JsonObject.class);        
         
         return convertedObject;
-        
-        
-        // JsonObject jsonObject = new JsonParser().parse(response.body()).getAsJsonObject();
-        // return "League " + req.params(":leagueCode");
-        
-        
-        //Usar LeagueService
-        
     }
     
     public static JsonObject getTeamsFromApi(String league) throws IOException, InterruptedException, NotFoundException {
@@ -55,24 +40,7 @@ public class APIClientService {
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         
         if (response.statusCode() == 404)
-        throw new NotFoundException(404, "Not found", null);
-        
-        // boolean success = response.statusCode() == 200;
-        // boolean success = false;
-        // while(!success) {
-        //     response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        //     int status = response.statusCode();
-        //     success = (status == 200);
-        //     if (!success) {
-        //         if(status == 429) {
-        //             Thread.sleep(5000); // wait 2 seconds before retrying
-        //         } else {
-        //             throw new RuntimeException("Something went wrong: HTTP status: " + status);
-        //         }
-        //     }
-        // }
-
-        // System.out.println("Status " + response.statusCode());
+            throw new NotFoundException(404, "Not found", null);
 
         JsonObject convertedObject = new Gson().fromJson(response.body(), JsonObject.class);
 
@@ -90,7 +58,7 @@ public class APIClientService {
         
         if (response.statusCode() == 404)
             throw new NotFoundException(404, "Not found", null);
-        // boolean success = response.statusCode() == 200;
+
         boolean success = false;
         while(!success) {
             response = client.send(request, HttpResponse.BodyHandlers.ofString());
@@ -104,13 +72,7 @@ public class APIClientService {
                 }
             }
         }
-        // System.out.println("Status Players " + response.statusCode());
-
         JsonObject convertedObject = new Gson().fromJson(response.body(), JsonObject.class);
-
-
-        // System.out.println(convertedObject.toString());
-
         return convertedObject;
 
     }

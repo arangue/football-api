@@ -14,19 +14,15 @@ public class App {
 
       enableCORS("*","*","*");
 
-      // before((request, response) -> {
-      //   Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost:3306/football", "root", "root");
-      // });
-
       before((request, response) -> {
-        // if(!Base.hasConnection()){
+        if(!Base.hasConnection()){
           Base.open("com.mysql.cj.jdbc.Driver", "jdbc:mysql://localhost:3306/football", "root", "root");
-        // }
+        }
 
       });
 
       after((request, response) -> {
-        // if(Base.hasConnection()) Base.close();
+        if(Base.hasConnection()) Base.close();
         response.type("application/json"); 
       });
 
@@ -36,7 +32,6 @@ public class App {
 
     }
 
-    // This method is an initialization method and should be called once.
     private static void enableCORS(final String origin, final String methods, final String headers) {
 
       options("/*", (request, response) -> {
@@ -58,8 +53,6 @@ public class App {
             response.header("Access-Control-Allow-Origin", origin);
             response.header("Access-Control-Request-Method", methods);
             response.header("Access-Control-Allow-Headers", headers);
-            // Note: this may or may not be necessary in your particular application
-            response.type("application/json");
       });
     }
 

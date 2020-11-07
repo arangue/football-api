@@ -1,7 +1,5 @@
 package com.football.api.controller;
 
-import java.sql.SQLException;
-
 import com.football.api.service.PlayerService;
 import com.google.gson.JsonObject;
 import spark.*;

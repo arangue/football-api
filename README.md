@@ -26,7 +26,7 @@ where N is the total amount of players belonging to all teams that participate i
 -   SparkJava
 
 # Set up
-#### Create database structure
+### Create database structure
 
      $ mysql -u USERNAME -p PASSWORD < sql/schema.sql
 Since we are going to use MySQL, we have to configure the file `{basedir}/src/main/resources/database.properties` with the proper values
@@ -36,5 +36,5 @@ Since we are going to use MySQL, we have to configure the file `{basedir}/src/ma
     development.password= <PASSWORD>
     development.url=jdbc:mysql://localhost:3306/football
 
-#### Run webservice
+### Run webservice
 Use the script `./run.sh`

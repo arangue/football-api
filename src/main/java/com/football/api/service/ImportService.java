@@ -14,7 +14,6 @@ public class ImportService {
 
         if (LeagueService.checkInDatabase(league))
             return 409;
-        // LeagueService.checkInDatabase(league);
         try {
             JsonObject competitions = APIClientService.getLeagueFromApi(league);
             

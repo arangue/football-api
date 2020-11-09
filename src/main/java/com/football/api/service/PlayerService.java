@@ -3,37 +3,26 @@ package com.football.api.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.football.api.exception.NotFoundException;
 import com.football.api.model.*;
-import com.google.gson.JsonObject;
-
-import spark.Request;
-import spark.Response;
 
 public class PlayerService {
 
-	public static JsonObject playerService(Request request, Response response) {
-
-        String league = request.params(":leagueCode");
-        String total = "";
-        JsonObject msg = new JsonObject();
+	public static int countPlayersByLeague(String league) throws NotFoundException, SQLException {
         
         if(!checkInDatabase(league)){
-            response.status(404);
-            msg.addProperty("message","Not Found");
-            return msg;
+            throw new NotFoundException(404, "Not found", null);
         }
 
-        total = String.valueOf(totalplayers(league));
-        response.status(200);
-        msg.addProperty("message",total);
-        return msg;
+        return totalplayers(league);
+
 	}
 
     private static boolean checkInDatabase(String league) {
         return Competition.findFirst("code = ?", league) != null;
     }
 
-    private static int totalplayers(String league) {
+    private static int totalplayers(String league) throws SQLException{
         int count = 0;
         Competition c = new Competition();
         c = Competition.findFirst("code = ?", league);

@@ -48,7 +48,6 @@ public class APIClientService {
 
     }
 
-
     public static JsonObject getTeamsPlayersFromAPI(int teamId) throws IOException, InterruptedException, NotFoundException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
@@ -66,7 +65,7 @@ public class APIClientService {
             success = (status == 200);
             if (!success) {
                 if(status == 429) {
-                    Thread.sleep(1000);
+                    Thread.sleep(5000);
                 } else {
                     throw new RuntimeException("Something went wrong: HTTP status: " + status);
                 }
@@ -74,9 +73,5 @@ public class APIClientService {
         }
         JsonObject convertedObject = new Gson().fromJson(response.body(), JsonObject.class);
         return convertedObject;
-
     }
-
-
-
 }
